@@ -13,6 +13,16 @@
   "author": "Anh Tranngoc <manhhomienbienthuy@yahoo.com.vn>",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "~3.9.1"
+    "gulp": "~3.9.1",
+    "gulp-autoprefixer": "~3.1.0",
+    "gulp-clean-css": "~2.0.5",
+    "gulp-concat": "^2.6.0",
+    "gulp-csslint": "~0.3.0",
+    "gulp-eslint": "^2.0.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-rename": "~1.2.2",
+    "gulp-sass": "~2.2.0",
+    "gulp-uglify": "^1.5.3",
+    "imagemin-pngquant": "^4.2.2"
   }
 }

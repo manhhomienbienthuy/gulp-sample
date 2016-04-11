@@ -1,0 +1,11 @@
+@import 'utils';
+
+body {
+    font: 200% $font-stack;
+    color: $primary-color;
+}
+
+p {
+    display: block;
+    @include margin(20px);
+}
