@@ -44,5 +44,10 @@ gulp.task('imagemin', function() {
         .pipe(gulp.dest('dist/images'));
 });
 
+gulp.task('automate', function() {
+    gulp.watch('src/scss/*.scss', ['stylesheet']);
+    gulp.watch('src/js/*.js', ['javascript']);
+});
+
 
 gulp.task('default', ['stylesheet', 'javascript', 'imagemin']);
