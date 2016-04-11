@@ -9,26 +9,31 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('stylesheet', function() {
     return gulp
         .src('src/scss/style.scss')
+        .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(csslint())
         .pipe(csslint.reporter())
         .pipe(cssmin())
         .pipe(rename('style.min.css'))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('javascript', function() {
     return gulp
         .src('src/js/*.js')
+        .pipe(sourcemaps.init())
         .pipe(concat('app.min.js'))
         .pipe(eslint('.eslintrc.json'))
         .pipe(eslint.format())
         .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/js'));
 });
 
