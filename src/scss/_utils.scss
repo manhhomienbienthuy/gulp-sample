@@ -1,0 +1,6 @@
+$font-stack: Helvetica, sans-serif;
+$primary-color: #ffeedd;
+
+@mixin margin($pixel) {
+    margin: $pixel;
+}
