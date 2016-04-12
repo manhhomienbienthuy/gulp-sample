@@ -10,3 +10,15 @@ p {
     display: block;
     @include margin(20px);
 }
+
+a {
+    font-family: Arial;
+    font-style: italic;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: bold;
+    background-image: url('example.png');
+    background-color: red;
+    background-size: cover;
+    background-repeat: no-repeat;
+}

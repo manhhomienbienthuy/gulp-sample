@@ -10,6 +10,7 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var sourcemaps = require('gulp-sourcemaps');
+var shorthand = require('gulp-shorthand');
 
 gulp.task('stylesheet', function() {
     return gulp
@@ -19,6 +20,7 @@ gulp.task('stylesheet', function() {
         .pipe(autoprefixer())
         .pipe(csslint())
         .pipe(csslint.reporter())
+        .pipe(shorthand())
         .pipe(cssmin())
         .pipe(rename('style.min.css'))
         .pipe(sourcemaps.write('.'))
