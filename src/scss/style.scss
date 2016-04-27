@@ -1,24 +1,243 @@
+/*! Copyright (C) 2016 Anh Tranngoc. This is a banner sample */
+
 @import 'normalize';
 @import 'utils';
 
 body {
-    font: 200% $font-stack;
-    color: $primary-color;
+    @include sans-serif;
+    @include font-size(18);
+    font-weight: normal;
+    background: $true-white;
+    color: $text;
+    line-height: 2;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+
+    // don't active mobile styles for larger screens
+    @include respond-min(768px) {
+        min-width: 768px;
+    }
 }
 
-p {
-    display: block;
-    @include margin(20px);
+main {
+    flex: 1 0 auto;
 }
 
 a {
-    font-family: Arial;
-    font-style: italic;
-    font-size: 14px;
-    line-height: 18px;
-    font-weight: bold;
-    background-image: url('example.png');
-    background-color: red;
-    background-size: cover;
-    background-repeat: no-repeat;
+    @include link-blue;
+}
+
+::selection {
+    background: $selection-bg;
+}
+
+ul li,
+ol li {
+    margin-top: 10px;
+}
+
+dl {
+    margin: 20px 0 10px;
+
+    dd {
+        margin: 0.2em 0 1.2em;
+        padding: 0;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4 {
+    border-bottom: 1px solid $gray-line;
+}
+
+h1 {
+    @include font-size(28);
+    @include respond-min(768px) {
+        @include font-size(32);
+    }
+}
+
+h2 {
+    @include font-size(24);
+}
+
+h3 {
+    @include font-size(20);
+}
+
+h4 {
+    @include font-size(16);
+}
+
+tt,
+code,
+kbd,
+pre,
+samp {
+    @include monospace;
+    color: $text;
+    background: $gray-bg;
+    border-radius: 3px;
+    padding: 0.5em;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+p {
+    &:first-child {
+        margin-top: 30px;
+    }
+}
+
+.container {
+    @include clearfix;
+    @include respond-min(768px) {
+        margin: 0 auto;
+        max-width: 1400px;
+        padding: 0 (32/768) * 100%;
+    }
+}
+
+.navbar {
+    // include global navigation, logo, tagline
+    @include clearfix;
+    background: $true-white;
+    border-bottom: 1px solid $gray-line;
+    overflow: hidden;
+    padding: 4px 0;
+    position: relative;
+    z-index: 0;
+
+    @include respond-min(768px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100;
+    }
+
+    .meta {
+        @include font-size(13);
+        color: $text-light;
+        font-weight: bold;
+        margin: 4px 0;
+        display: none;
+
+        @include respond-min(1150px) {
+            float: left;
+            width: 200px;
+            display: block;
+        }
+    }
+
+    .logo {
+        @include font-size(40);
+        background: url(../img/logo.png) 0 0 no-repeat;
+        color: $blue;
+        display: block;
+        float: left;
+        font-weight: bold;
+        margin: 10px;
+        overflow: hidden;
+        text-decoration: none;
+        text-indent: 100%;
+        height: 40px;
+
+        @include respond-min(768px) {
+            margin-left: 0;
+        }
+    }
+
+    .menu-button {
+        @include font-size(20);
+        color: $blue;
+        cursor: pointer;
+        display: block;
+        float: right;
+        height: 45px;
+        margin: 4px 10px;
+        text-align: center;
+        text-decoration: none;
+        width: 45px;
+
+        @include respond-min(768px) {
+            display: none;
+        }
+
+        &:active, &.active {
+            color: lighten($blue, 20%);
+        }
+    }
+
+    .nav-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease-out;
+        width: 100%;
+
+        @include respond-min(768px) {
+            max-height: none;
+            transition: none;
+            width: auto;
+            float: right;
+        }
+
+        &.active {
+            max-height: 500px;
+        }
+
+        ul {
+            margin: 10px 0 0;
+            padding: 0;
+
+            @include respond-min(768px) {
+                margin: 0;
+            }
+        }
+
+        li {
+            @include font-size(13);
+            display: block;
+            font-weight: bold;
+            line-height: 16px;
+            text-align: left;
+            text-transform: uppercase;
+            margin: 0 10px;
+            border-top: 1px solid $gray-line;
+
+            @include respond-min(768px) {
+                margin: 0;
+                border: 0;
+                float: left;
+                text-align: center;
+            }
+
+            &.active a {
+                color: lighten($blue, 10%);
+            }
+        }
+
+        a {
+            color: $blue;
+            display: block;
+            padding: 20px 0;
+            text-decoration: none;
+
+            &:active,
+            &:hover {
+                color: lighten($blue, 10%);
+            }
+
+            @include respond-min(768px) {
+                padding: 20px 10px;
+            }
+        }
+    }
 }
