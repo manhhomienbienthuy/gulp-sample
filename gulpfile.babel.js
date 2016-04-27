@@ -12,6 +12,7 @@ var pngquant = require('imagemin-pngquant');
 var sourcemaps = require('gulp-sourcemaps');
 var shorthand = require('gulp-shorthand');
 var babel = require('gulp-babel');
+var combine = require('gulp-combine-mq');
 
 var gulpif = require('gulp-if');
 var argv = require('yargs').argv;
@@ -20,28 +21,29 @@ var production = !!argv.production; // --production
 gulp.task('stylesheet', () => {
     return gulp
         .src('src/scss/style.scss')
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(sass())
         .pipe(autoprefixer())
         .pipe(csslint())
         .pipe(csslint.reporter())
         .pipe(shorthand())
+        .pipe(combine())
         .pipe(gulpif(production, cssmin()))
         .pipe(rename('style.min.css'))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpif(!production, sourcemaps.write('.')))
         .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('javascript', () => {
     return gulp
         .src('src/js/*.js')
-        .pipe(sourcemaps.init())
+        .pipe(gulpif(!production, sourcemaps.init()))
         .pipe(concat('app.min.js'))
         .pipe(eslint('.eslintrc.json'))
         .pipe(eslint.format())
         .pipe(babel())
         .pipe(gulpif(production, uglify()))
-        .pipe(sourcemaps.write('.'))
+        .pipe(gulpif(!production, sourcemaps.write('.')))
         .pipe(gulp.dest('dist/js'));
 });
 
